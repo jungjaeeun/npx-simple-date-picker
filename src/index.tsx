@@ -13,6 +13,10 @@ type CustomDateProps = {
   disabled?: boolean;
   className?: string;
   showCalendarIcon?: boolean;
+  borderBoxStyle?: string;
+  borderRadius?: number;
+  fontColor?: string;
+  fontWeight?: number;
   onChange?: (selectedDate: string) => void;
 };
 
@@ -25,6 +29,10 @@ export const CustomDate: React.FC<CustomDateProps> = ({
   className = '',
   disabled = false,
   showCalendarIcon = true,
+  borderBoxStyle = '',
+  borderRadius = '',
+  fontColor = '',
+  fontWeight = 400,
   onChange,
 }) => {
   const [selectDate, setSelectDate] = useState(selectedDate);
@@ -49,7 +57,16 @@ export const CustomDate: React.FC<CustomDateProps> = ({
 
   return (
     <div className={`${s['custom-date-picker']} ${className}`}>
-      <div className={s['custom-date']} onClick={handleCustomDateClick}>
+      <div
+        className={`${s['custom-date']} ${!showCalendarIcon ? s['justify-content-center'] : ''}`}
+        onClick={handleCustomDateClick}
+        style={{
+          fontWeight,
+          color: fontColor,
+          border: borderBoxStyle,
+          borderRadius,
+        }}
+      >
         {selectDate ? selectDate : placeholder}
         {showCalendarIcon && <FontAwesomeIcon icon={faCalendarDay}></FontAwesomeIcon>}
       </div>

@@ -6,14 +6,11 @@
 
 .custom-date {
   padding: 10px;
-  border: 1px solid #ccc;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
-  border-radius: 4px;
-  color: #585858;
 }
 
 .calendar-icon {
@@ -34,4 +31,8 @@
 
 .selected-date {
   margin-top: 10px;
+}
+
+.justify-content-center {
+  justify-content: center;
 }
