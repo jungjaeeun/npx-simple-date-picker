@@ -7,7 +7,7 @@ import React from 'react';
 type CustomDateProps = {
   type?: 'year' | 'month' | 'date';
   placeholder?: string;
-  defaultSelectDate?: string;
+  selectedDate?: string;
   min?: string;
   max?: string;
   disabled?: boolean;
@@ -21,23 +21,24 @@ export const CustomDate: React.FC<CustomDateProps> = ({
   placeholder = '',
   min = '',
   max = '',
-  defaultSelectDate = '',
+  selectedDate = '',
   className = '',
   disabled = false,
   showCalendarIcon = true,
   onChange,
 }) => {
-  const [selectDate, setSelectDate] = useState(defaultSelectDate);
+  const [selectDate, setSelectDate] = useState(selectedDate);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (onChange) {
-      onChange(selectDate);
-    }
-  }, [selectDate]);
+    setSelectDate(selectedDate);
+  }, [selectedDate]);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectDate(e.target.value);
+    if (onChange) {
+      onChange(e.target.value);
+    }
   };
 
   const handleCustomDateClick = () => {
