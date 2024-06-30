@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
-import s from './styles.module.css';
 import React from 'react';
+import s from './styles.module.css';
 
 type CustomDateProps = {
   type?: 'year' | 'month' | 'date';
@@ -69,19 +69,18 @@ export const CustomDate: React.FC<CustomDateProps> = ({
       >
         {selectDate ? selectDate : placeholder}
         {showCalendarIcon && <FontAwesomeIcon icon={faCalendarDay}></FontAwesomeIcon>}
+        <input
+          ref={inputRef}
+          type={type}
+          disabled={disabled}
+          value={selectDate}
+          onChange={handleDateChange}
+          min={min}
+          max={max}
+          className={s['custom-date-input']}
+          required
+        />
       </div>
-      <input
-        ref={inputRef}
-        hidden
-        type={type}
-        disabled={disabled}
-        value={selectDate}
-        onChange={handleDateChange}
-        min={min}
-        max={max}
-        className={s['custom-date-input']}
-        required
-      />
     </div>
   );
 };
